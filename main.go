@@ -28,6 +28,9 @@ func main() {
 	//commented
 	//newDeckFromFile("i_do_not_exist")
 
+	cards.shuffle()
+	cards.print()
+
 }
 
 // func newCard() string {
