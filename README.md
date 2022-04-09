@@ -29,3 +29,7 @@ This is repository to learn [golang](https://go.dev/doc/), with follow along pro
     - method: `Now().UnixNano()`
 
 
+### Testing in Golang
+
+- To write a test in go, a new file is created ending in `_test.go` 
+- To run all tests in the package : `go test`

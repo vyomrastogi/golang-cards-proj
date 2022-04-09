@@ -70,7 +70,7 @@ func newDeckFromFile(filename string) deck {
 
 //shuffles the existing deck
 func (d deck) shuffle() {
-	//randomize the seed source of 
+	//randomize the seed source of
 	source := rand.NewSource(time.Now().UnixNano())
 	r := rand.New(source)
 
