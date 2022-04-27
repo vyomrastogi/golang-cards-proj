@@ -13,6 +13,8 @@ type person struct {
 	firstName string
 	lastName  string
 	contact   contactInfo
+	// it can also be declared as contactInfo with out field name,
+	// it will be treated as contactInfo contactInfo
 }
 
 func main() {
@@ -30,9 +32,25 @@ func main() {
 
 	thor.print()
 	//OP: {firstName:Thor lastName:Odinson contact:{email:thor@avengers.com zipCode:0}}
+
+	//store pointer to thor in var
+	thorPointerAddress := &thor 
+	thorPointerAddress.updateFirstName("Brother")
+	thor.print()
 }
 
 //print person with reciever function
 func (p person) print() {
 	fmt.Printf("%+v", p)
+}
+
+//below function does not update actual first, but updates on firstName
+//property on object 'p'. Main reason for this is go is pass by value 
+// and hence maintains a pointer to each variable passed to function
+func (p person) updateFirstName_NotWorking(newFirstName string){
+	p.firstName = newFirstName
+}
+
+func (pointerToPerson *person) updateFirstName(newFirstName string) {
+	(*pointerToPerson).firstName = newFirstName
 }
