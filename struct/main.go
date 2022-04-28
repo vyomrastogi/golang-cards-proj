@@ -34,9 +34,13 @@ func main() {
 	//OP: {firstName:Thor lastName:Odinson contact:{email:thor@avengers.com zipCode:0}}
 
 	//store pointer to thor in var
-	thorPointerAddress := &thor 
+	thorPointerAddress := &thor
 	thorPointerAddress.updateFirstName("Brother")
 	thor.print()
+
+	//BUT WAIT even this works
+	tony.updateFirstName("Billionaire")
+	tony.print()
 }
 
 //print person with reciever function
@@ -45,9 +49,9 @@ func (p person) print() {
 }
 
 //below function does not update actual first, but updates on firstName
-//property on object 'p'. Main reason for this is go is pass by value 
+//property on object 'p'. Main reason for this is go is pass by value
 // and hence maintains a pointer to each variable passed to function
-func (p person) updateFirstName_NotWorking(newFirstName string){
+func (p person) updateFirstName_NotWorking(newFirstName string) {
 	p.firstName = newFirstName
 }
 
