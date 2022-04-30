@@ -7,8 +7,9 @@ func main() {
 	//How to declare maps
 	//A map of string, string
 	colors := map[string]string{
-		"red":  "#FF0000",
-		"blue": "#0000FF",
+		"red":   "#FF0000",
+		"blue":  "#0000FF",
+		"white": "#FFFFFF",
 	}
 
 	// Declaring map without key:value pair
@@ -24,4 +25,12 @@ func main() {
 	fmt.Println(colors)
 	fmt.Println(colorMap)
 	fmt.Println(hex)
+	printMap(colors)
+}
+
+//Print the given map
+func printMap(m map[string]string) {
+	for color, hex := range m {
+		fmt.Println("value for key [", color, "] is [", hex, "]")
+	}
 }
