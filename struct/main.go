@@ -41,6 +41,10 @@ func main() {
 	//BUT WAIT even this works
 	tony.updateFirstName("Billionaire")
 	tony.print()
+
+	//What happens when pointer is converted to value
+	name := "Bill"
+	fmt.Println(*&name)
 }
 
 //print person with reciever function

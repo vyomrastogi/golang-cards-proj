@@ -33,3 +33,11 @@ This is repository to learn [golang](https://go.dev/doc/), with follow along pro
 
 - To write a test in go, a new file is created ending in `_test.go` 
 - To run all tests in the package : `go test`
+
+### Reference Types 
+- Slices :  keep a reference to an array 
+    - this is why when a slice index is updated in a function, the original slice also gets updated
+- functions
+- maps
+- channels
+- pointers
