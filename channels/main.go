@@ -26,8 +26,19 @@ func main() {
 	}
 
 	//each '<-c' read from channel waits for one message from go routine
-	for i := 0; i < len(websites); i++ {
-		fmt.Println(<-c)
+	// for i := 0; i < len(websites); i++ {
+	// 	fmt.Println(<-c)
+	// }
+
+	//To continuosly check the website
+	// NOTE : INFINITE LOOP
+
+	// for {
+	// 	checkWebsite(<-c, c)
+	// }
+
+	for message := range c { //for reach message in channel
+		go checkWebsite(message, c)
 	}
 
 	fmt.Println("Total execution time [", time.Now().UnixMilli()-startTime, " ms]")
@@ -40,11 +51,13 @@ func checkWebsite(website string, c chan string) {
 	if err != nil {
 		fmt.Println(website, "might be down!")
 		fmt.Println("Response time [", time.Now().UnixMilli()-responseStart, " ms]")
-		c <- "Oops, Its down"
+		//c <- "Oops, Its down"
 		return //force stop of function execution
 	}
 	fmt.Println(website, "is up!")
-	c <- "Yes, It's up"
+	//return website to channel
+	c <- website
+	//c <- "Yes, It's up"
 	fmt.Println("Response time [", time.Now().UnixMilli()-responseStart, " ms]")
 }
 
