@@ -38,7 +38,10 @@ func main() {
 	// }
 
 	for message := range c { //for reach message in channel
-		go checkWebsite(message, c)
+		go func(link string) {
+			time.Sleep(5 * time.Second) // Pause for 5 second before checking site status again
+			go checkWebsite(link, c)
+		}(message) // pass message to function literal to avoid access of same varible from main and child routine
 	}
 
 	fmt.Println("Total execution time [", time.Now().UnixMilli()-startTime, " ms]")
@@ -70,3 +73,4 @@ func checkWebsite(website string, c chan string) {
 //Go Routine is similar to Thread
 //Child Routine is similar to Child Thread
 //Channel is kind of similar Futures
+//function literal is same lambda or anonymous function
