@@ -24,6 +24,12 @@ func main() {
 		//with child go routines, main routine does not wait for child to finish execution
 		//channel helps in communication between routines
 	}
+
+	//each '<-c' read from channel waits for one message from go routine
+	for i := 0; i < len(websites); i++ {
+		fmt.Println(<-c)
+	}
+
 	fmt.Println("Total execution time [", time.Now().UnixMilli()-startTime, " ms]")
 }
 
@@ -34,9 +40,11 @@ func checkWebsite(website string, c chan string) {
 	if err != nil {
 		fmt.Println(website, "might be down!")
 		fmt.Println("Response time [", time.Now().UnixMilli()-responseStart, " ms]")
+		c <- "Oops, Its down"
 		return //force stop of function execution
 	}
 	fmt.Println(website, "is up!")
+	c <- "Yes, It's up"
 	fmt.Println("Response time [", time.Now().UnixMilli()-responseStart, " ms]")
 }
 
